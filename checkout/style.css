@@ -48,9 +48,6 @@ body a:hover {
   flex-direction: row wrap;
   align-items: center;
 }
-.flex.justify-space-between {
-  justify-content: space-between;
-}
 .card {
   padding: 50px;
   margin: 50px auto;
