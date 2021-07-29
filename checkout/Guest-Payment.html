@@ -50,63 +50,7 @@
 						<div class="num">Step 2</div>
 						<h4>Credit Card Info</h4>
 					</div>
-					<div id="app" style="width:100%">
-  					<v-app id="inspire">
-					      <v-btn
-					      color="#52b36c"
-					      class="ma-2 white--text"
-					      @click="opensesame()"
-					      style=""
-					    >
-					      New Card
-					      <v-icon
-					        right
-					        dark
-					      >
-					        mdi-plus
-					      </v-icon>
-					    </v-btn>
-					      <v-dialog
-					        v-model="dialog"
-					        max-width="600px"
-					        style="height:100%"
-					      >
-					      <iframe src="./card.html" style="border: none; width: 100%; height: 100%;" noscrollbar></iframe>
-					      </v-dialog>
-					      <v-dialog
-					        v-model="openoops"
-					        max-width="600px"
-					      >
-					      <center><h1 style="padding:15px">Oops! Please Fill In All Card Fields!</h1></center>
-					      </v-dialog>
-					      <v-dialog
-					        v-model="failed"
-					        max-width="600px"
-					      >
-					      <center><h1 style="padding:15px">Adding Card Failed</h1></center>
-					      </v-dialog>
-					      <v-dialog
-					        v-model="invalidcard"
-					        max-width="600px"
-					      >
-					      <center><h1 style="padding:15px">Creating Payment Method Failed!</h1></center><br>
-					      <center><p>Card may Be invalid</p></center>
-					      </v-dialog>
-					      <v-dialog
-					        v-model="password"
-					        max-width="600px"
-					      >
-					      <center><h1 style="padding:15px">Invalid Password!</h1></center>
-					      </v-dialog>
-					      <v-dialog
-					        v-model="success"
-					        max-width="600px"
-					      >
-					      <center><h1 style="padding:15px">Card Successfully Added!</h1></center>
-					      </v-dialog>
-					  </v-app>
-					</div>
-					<!--<div class="field full">
+					<div class="field full">
 						<label for="name">Cardholder Name</label>
 						<input type="text" placeholder="Full Name" id="cardholder">
 					</div>
@@ -127,7 +71,7 @@
 					<div class="field full">
 						<label for="zip">CVC Number</label>
 						<input id="cvc" type="text" placeholder="468">
-					</div>-->
+					</div>
 				</div>
 			</div>
 		</div>
@@ -143,91 +87,7 @@
 	</div>
 </article>
 <!-- partial -->
-  <script src='https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js'></script>
-<script src='https://cdn.jsdelivr.net/npm/vuetify@2.4.11/dist/vuetify.min.js'></script>
-<script>
-app = new Vue({
-  el: '#app',
-    vuetify: new Vuetify(),
-  data() {
-    return {
-      invalidcard: false,
-      password:false,
-      success:false,
-      failed:false,
-      loading:false,
-      openoops:false,
-      dialog:false,
-      verifypass:false,
-      itemsPerPageArray: [15, 25, 50],
-      search: '',
-      filter: {},
-      sortDesc: false,
-      page: 1,
-      itemsPerPage: 1,
-      sortBy: 'name',
-      keys1: [
-      'Date',
-      'Location',
-      'Education',
-      ],
-      keys: [
-      'Date',
-      'Location',
-      'Education',
-      ],
-      items1: [],
-      search: ""};},
-  computed: {
-    numberOfPages() {
-      return Math.ceil(this.items.length / this.itemsPerPage);
-    },
-    filteredKeys() {
-      return this.keys.filter(key => key !== 'Name');
-    } },
 
-  methods: {
-    openoops(){
-      this.openoops = true
-    },
-    closeoops(){
-      this.openoops = false
-    },
-    openverify(){
-      this.verifypass = true
-    },
-    closeverify(){
-      this.verifypass = false
-    },
-    opensesame(){
-      this.dialog = true
-    },
-    closesesame(){
-      this.dialog = false
-    },
-    update_field(){
-      document.getElementById("location").value = this.items.location;
-      document.getElementById("education").value = this.items.education;
-      document.getElementById("tagline").value = this.items.tag;
-    },
-      updateTags() {
-      this.$nextTick(() => {
-        this.skills.push(...this.search.split(","));
-        this.$nextTick(() => {
-          this.search = "";
-        });
-      });
-    },
-    nextPage() {
-      if (this.page + 1 <= this.numberOfPages) this.page += 1;
-    },
-    formerPage() {
-      if (this.page - 1 >= 1) this.page -= 1;
-    },
-    updateItemsPerPage(number) {
-      this.itemsPerPage = number;
-    } } });
 
 </script>
 </body>
