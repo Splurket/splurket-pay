@@ -155,8 +155,61 @@
 
 
   >
-  </template>
 
+
+    <template v-slot:top>
+          <v-dialog
+        v-model="dialog2"
+        max-width="500px"
+      >
+        <v-card>
+          <v-card-title>
+            Delete All Items?
+          </v-card-title>
+          <v-card-text>
+            <v-btn
+            id="clearcart"
+              color="primary"
+              dark
+              style="background-color: #52b36c !important"
+              onclick="localStorage.removeItem('cart'); location.reload()"
+            >
+              Yes Clear All items
+            </v-btn>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn
+              color="primary"
+              text
+              @click="dialog2 = false"
+            >
+              No, Get Me Out Of Here!
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+        <v-dialog v-model="dialogDelete" max-width="500px" style="word-break: break-word;">
+          <v-card>
+            <center><v-card-title class="headline" style="word-wrap: break-word;word-break: break-word">Are You Sure You Want To Delete This Item?</v-card-title></center>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
+              <v-btn color="blue darken-1" id="desserts" text @click="deleteItemConfirm" onclick="removeFromCart()">OK</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-toolbar>
+  </template>
+    <template v-slot:item.actions="{ item }">
+      <v-icon
+        small
+        :id=item.id
+        onclick="idf(this.id)"
+      >
+        mdi-close
+      </v-icon>
+    </template>
     <template v-slot:item.name="{ item }">
       <td
       :id="item.id"
