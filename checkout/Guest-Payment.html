@@ -163,6 +163,7 @@ name = document.getElementById('name').value
 if(year == "" || month == "" || cvc == "" || number == "" || cardholder == "" || email == "" || name == ""){
 	document.getElementById('errormess').style.display = "block"
 }else if(year != "" && month != "" && cvc != "" && number != "" && cardholder != "" && email != "" && name != ""){
+	document.getElementById('errormess').style.display = "none"
 document.getElementById('sum_year').innerHTML=year
 document.getElementById('sum_month').innerHTML=month
 document.getElementById('sum_cvc').innerHTML=cvc
