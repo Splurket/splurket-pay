@@ -318,9 +318,11 @@ console.log(Object.keys(hello).length)
     }, 0);
 
     totalDollars = total / 100;
-    console.log(hello + totalDollars)
+    console.log(totalDollars)
+    console.log(total)
     totalDollars1 = totalDollars.toFixed(2)
     app.total = `$${totalDollars1}`;
+    console.log(app.total)
     
 
     // remove all cart items
@@ -410,27 +412,6 @@ console.log(Object.keys(hello).length)
     localStorage.setItem('cart', JSON.stringify(cart));
     
     populateCart();
-  }
-
-  function removeFromCart(id) {
-    id=idd
-    var cart = getCart();
-    if (!cart[id]) {
-      console.error(`${id} not found in cart`);
-      return;
-    }
-
-    var prevQuantity = cart[id].quantity;
-    if (prevQuantity === 1) {
-      // remove item if will go to 0
-      delete cart[id];
-    } else {
-      cart[id].quantity = prevQuantity - 1;
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    window.location.reload()
   }
 
   function getCart() {
