@@ -57,6 +57,11 @@
 function GoPay(){
 	var selected = document.querySelector('.selected').id;
 	console.log(selected)
+	if(selected == "existing"){
+		window.location.href = "./payment-select"
+	}else if(selected == "guest"){
+		window.location.href = "./Guest-Payment"	
+	}
 }
 </script>
 </body>
