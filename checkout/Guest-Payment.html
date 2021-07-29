@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'><link rel="stylesheet" href="./style.css">
-
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.4.11/dist/vuetify.min.css'>
 </head>
 <style>
 .flex.justify-space-between {
@@ -91,6 +91,98 @@
 	</div>
 </article>
 <!-- partial -->
-  
+  <script src='https://cdn.jsdelivr.net/npm/babel-polyfill/dist/polyfill.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vuetify@2.4.11/dist/vuetify.min.js'></script>
+<script>
+app = new Vue({
+  el: '#app',
+    vuetify: new Vuetify(),
+  data() {
+    return {
+      invalidcard: false,
+      password:false,
+      success:false,
+      failed:false,
+      loading:false,
+      openoops:false,
+      dialog:false,
+      verifypass:false,
+      itemsPerPageArray: [15, 25, 50],
+      search: '',
+      filter: {},
+      sortDesc: false,
+      page: 1,
+      itemsPerPage: 1,
+      sortBy: 'name',
+      keys1: [
+      'Date',
+      'Location',
+      'Education',
+      ],
+      keys: [
+      'Date',
+      'Location',
+      'Education',
+      ],
+      skills:skills,
+      products:products,
+      badges:badges,
+      reviews:reviews,
+      items: user_data,
+      profile_pic: user_data,
+      items1: [],
+      search: ""};},
+  computed: {
+    numberOfPages() {
+      return Math.ceil(this.items.length / this.itemsPerPage);
+    },
+    filteredKeys() {
+      return this.keys.filter(key => key !== 'Name');
+    } },
+
+  methods: {
+    openoops(){
+      this.openoops = true
+    },
+    closeoops(){
+      this.openoops = false
+    },
+    openverify(){
+      this.verifypass = true
+    },
+    closeverify(){
+      this.verifypass = false
+    },
+    opensesame(){
+      this.dialog = true
+    },
+    closesesame(){
+      this.dialog = false
+    },
+    update_field(){
+      document.getElementById("location").value = this.items.location;
+      document.getElementById("education").value = this.items.education;
+      document.getElementById("tagline").value = this.items.tag;
+    },
+      updateTags() {
+      this.$nextTick(() => {
+        this.skills.push(...this.search.split(","));
+        this.$nextTick(() => {
+          this.search = "";
+        });
+      });
+    },
+    nextPage() {
+      if (this.page + 1 <= this.numberOfPages) this.page += 1;
+    },
+    formerPage() {
+      if (this.page - 1 >= 1) this.page -= 1;
+    },
+    updateItemsPerPage(number) {
+      this.itemsPerPage = number;
+    } } });
+
+</script>
 </body>
 </html>
