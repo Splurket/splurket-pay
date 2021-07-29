@@ -13,7 +13,7 @@ body a {
   transition: all 0.5s ease;
 }
 body a:hover {
-  border-bottom: 2px solid #40b3ff;
+  border-bottom: 2px solid #52b36c;
   opacity: 1;
 }
 .field {
@@ -97,11 +97,11 @@ body a:hover {
   color: #28333b;
 }
 .card .card-body .payment-type .types .type.selected {
-  border-color: #40b3ff;
+  border-color: #52b36c;
   background: rgba(64,179,255,0.1);
 }
 .card .card-body .payment-type .types .type.selected .logo {
-  color: #40b3ff;
+  color: #52b36c;
 }
 .card .card-body .payment-type .types .type.selected p {
   color: #28333b;
@@ -116,7 +116,7 @@ body a:hover {
   top: -21px;
   right: -21px;
   background: #fff;
-  border: 2px solid #40b3ff;
+  border: 2px solid #52b36c;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -150,7 +150,7 @@ body a:hover {
   height: 24px;
   width: 24px;
   border-radius: 50%;
-  border: 2px solid #40b3ff;
+  border: 2px solid #52b36c;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -183,11 +183,11 @@ footer {
   opacity: 0.75;
 }
 .button.button-link:hover {
-  border-bottom: 2px solid #40b3ff;
+  border-bottom: 2px solid #52b36c;
   opacity: 1;
 }
 .button.button-primary {
-  background: #40b3ff;
+  background: #52b36c;
   color: #fff;
 }
 .button.button-primary:hover {
