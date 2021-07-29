@@ -7,7 +7,8 @@
 <link href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css'><link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@2.4.11/dist/vuetify.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@2.4.11/dist/vuetify.min.css">
+
 </head>
 <style>
 .flex.justify-space-between {
@@ -138,8 +139,8 @@
 						<h3 id="sum_cvc">345</h3>
 					</div>
 				</div>
-				<center><h1 id="noitems">No Items Found In Cart!</h1></center>
-    <div id="app" style="width:100%">
+			</div>
+			    <div id="app" style="width:100%">
   <v-app id="inspire" style="min-width:50%">
   <main id="main" style="margin-left:10%">
     <div class="container">
@@ -218,6 +219,7 @@
           </v-card>
         </v-dialog>
       </v-toolbar>
+  </template>
     <template v-slot:item.actions="{ item }">
       <v-icon
         small
@@ -250,7 +252,6 @@
 </main>
 </v-app>
 </div>
-			</div>
 		</div>
 		<center><div class="card-actions flex justify-space-between">
 			<div class="flex-start">
@@ -295,13 +296,13 @@ function back(){
 document.getElementById('info').style.display ="block"
 document.getElementById('summary').style.display ="none"
 }
-</script>
-<script>
 
-var idd;
-cart=getCart();
 
-populateCart();
+
+    var idd;
+  cart=getCart();
+
+  populateCart();
   
 var hello=getCart();
 const items=[];
@@ -325,13 +326,6 @@ console.log(Object.keys(hello).length)
     var cartBody = document.querySelector("#cart > tbody");
     var cart = getCart();
     Crtitems = (JSON.stringify(Object.keys(cart).length))
-    if (Crtitems > "0" || typeof Crtitems !== "undefined"){
-      document.getElementById('app').style.diplay="block"
-      document.getElementById('noitems').style.display="none"
-    }else{
-      document.getElementById('app').style.diplay="none"
-      document.getElementById('noitems').style.display="block"
-    }
     // update total
     var totalEl = document.getElementById("total");
     var total = Object.keys(cart).reduce((prev, curr) => {
@@ -565,6 +559,5 @@ console.log(Object.keys(hello).length)
 
 </script>
 
-</script>
 </body>
 </html>
