@@ -309,6 +309,7 @@ console.log(Object.keys(hello).length)
     Crtitems = (JSON.stringify(Object.keys(cart).length))
     // update total
     var totalEl = document.getElementById("total");
+    console.log(totalEl)
     var total = Object.keys(cart).reduce((prev, curr) => {
 
       var q = cart[curr].quantity;
@@ -317,7 +318,7 @@ console.log(Object.keys(hello).length)
     }, 0);
 
     totalDollars = total / 100;
-    console.log(totalDollars)
+    console.log(hello + totalDollars)
     totalDollars1 = totalDollars.toFixed(2)
     app.total = `$${totalDollars1}`;
     
