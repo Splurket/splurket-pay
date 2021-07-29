@@ -201,15 +201,7 @@
         </v-dialog>
       </v-toolbar>
   </template>
-    <template v-slot:item.actions="{ item }">
-      <v-icon
-        small
-        :id=item.id
-        onclick="idf(this.id)"
-      >
-        mdi-close
-      </v-icon>
-    </template>
+
     <template v-slot:item.name="{ item }">
       <td
       :id="item.id"
