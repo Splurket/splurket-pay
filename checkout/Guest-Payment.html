@@ -21,10 +21,13 @@
 *{
 	all:none;
 }
+.shipping{
+	min-width:348px;
+}
 </style>
 <body>
 <!-- partial:index.partial.html -->
-<article class="card">
+<article class="card" id="info">
 	<div class="container">
 		<div class="card-title">
 			<center><h2>Guest Checkout</h2></center>
@@ -47,7 +50,7 @@
 				<div class="column shipping">
 					<div class="title" style="">
 						<div class="num">Step 2</div>
-						<h4>Credit Card Info</h4>
+						<h4>Card Info</h4>
 					</div>
 					<div class="field full">
 						<label for="name">Cardholder Name</label>
@@ -85,10 +88,89 @@
 		</div></center>
 	</div>
 </article>
+<article class="card"  id="summary" style="display: none">
+	<div class="container">
+		<div class="card-title">
+			<center><h1>Order Summary</h1></center>
+		</div>
+			<div class="payment-info flex justify-space-between">
+				<div class="column billing">
+					<div class="title">
+						<h4>Guest Info</h4>
+					</div>
+					<div class="field full">
+						<label for="name">Full Name</label>
+						<h3 id="sum_name">Dylan Clayton</h3>
+					</div>
+					<div class="field full">
+						<label for="email">Email</label>
+						<h3 id="sum_email">Splurket@gmail.com</h3>
+					</div>
+				</div>
+				<div class="column shipping">
+					<div class="title" style="">
+						<h4>Card Info</h4>
+					</div>
+					<div class="field full">
+						<label for="name">Cardholder Name</label>
+						<h3 id="sum_cardholder">Dylan Clayton</h3>
+					</div>
+					<div class="field full">
+						<label for="address">Card Number</label>
+						<h3 id="sum_number">4123 4321 7649 4674</h3>
+					</div>
+					<div class="flex justify-space-between">
+						<div class="field half">
+							<label for="city">Exp. Month</label>
+							<h3 id="sum_month">07</h3>
+						</div>
+						<div class="field half">
+							<label for="state">Exp. Year</label>
+							<h3 id="sum_year">2085</h3>
+						</div>
+					</div>
+					<div class="field full">
+						<label for="zip">CVC Number</label>
+						<h3 id="sum_cvc">345</h3>
+					</div>
+				</div>
+			</div>
+		</div>
+		<center><div class="card-actions flex justify-space-between">
+			<div class="flex-start">
+				<button class="button button-secondary">Return to Store</button>
+			</div>
+			<div class="flex-end">
+				<button class="button button-link" onclick="back()">Back</button>
+				<button class="button button-primary" onclick="proceed()">Proceed</button>
+			</div>
+		</div></center>
+	</div>
+</article>
 <!-- partial -->
 <script>
 function proceed(){
+year = document.getElementById('year').value
+month = document.getElementById('month').value
+cvc = document.getElementById('cvc').value
+number = document.getElementById('number').value
+cardholder = document.getElementById('cardholder').value
+email = document.getElementById('email').value
+name = document.getElementById('name').value
+document.getElementById('sum_year').innerHTML=year
+document.getElementById('sum_month').innerHTML=month
+document.getElementById('sum_cvc').innerHTML=cvc
+document.getElementById('sum_number').innerHTML=number
+document.getElementById('sum_cardholder').innerHTML=cardholder
+document.getElementById('sum_email').innerHTML=email
+document.getElementById('sum_name').innerHTML=name
+document.getElementById('info').style.display ="none"
+document.getElementById('summary').style.display ="block"
 
+}
+function back(){
+document.getElementById('info').style.display ="block"
+document.getElementById('summary').style.display ="none"
 }
 </script>
 
