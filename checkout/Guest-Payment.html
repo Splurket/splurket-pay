@@ -557,7 +557,11 @@ console.log(Object.keys(hello).length)
   })
 function StartPayment(){
 	app.dialog1=true
-var arr = [1,2,3,4,10,10,10,10,10,10,10,11];
+	var arr = [];
+	cart=getCart()
+	var products_ids = (Object.keys(cart))
+
+
 var total=0;
 for(var i in arr){ 
 	total += arr[i]; 
