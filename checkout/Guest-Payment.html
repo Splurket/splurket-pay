@@ -14,9 +14,6 @@
 .flex.justify-space-between {
   justify-content: space-between;
 }
-.v-dialog{
-	height:100%;
-}
 *{
 	all:none;
 }
@@ -167,6 +164,28 @@
   <main id="main" style="margin-left:10%">
     <div class="container">
 <template>
+	<v-dialog
+      v-model="dialog1"
+      hide-overlay
+      persistent
+      width="300"
+      id="loader"  
+      fullscreen        
+    >
+      <v-card
+        color="#52b36c"
+        dark
+      >
+        <v-card-text>
+          Processing Payment
+          <v-progress-linear
+            indeterminate
+            color="white"
+            class="mb-0"
+          ></v-progress-linear>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   <v-data-table
     :headers="headers"
     :items="desserts"
@@ -292,7 +311,7 @@ document.getElementById('info').style.display ="block"
 document.getElementById('summary').style.display ="none"
 }
 
-var total;
+
 
     var idd;
   cart=getCart();
@@ -440,6 +459,7 @@ console.log(Object.keys(hello).length)
   el: '#app',
   vuetify: new Vuetify(),
     data: () => ({
+    	dialog1:false,
      dialog2: false,
       dialog: false,
       dialogDelete: false,
@@ -535,8 +555,13 @@ console.log(Object.keys(hello).length)
     },
   })
 function StartPayment(){
-	var total9 =app.total
-	console.log(total9)
+	app.dialog1=true
+var arr = [1,2,3,4,10,10,10,10,10,10,10,11];
+var total=0;
+for(var i in arr){ 
+	total += arr[i]; 
+}
+console.log(total)
 }
 </script>
 
