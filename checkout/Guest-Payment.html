@@ -358,23 +358,33 @@ console.log(Object.keys(hello).length)
     var cartBody = document.querySelector("#cart > tbody");
     var cart = getCart();
     Crtitems = (JSON.stringify(Object.keys(cart).length))
+      	var products_ids = (Object.keys(cart))
+  	products_ids.forEach((value, index, array) => {
+        var docRef = db.collection("products").doc(value);
+
+            docRef.get().then((doc) => {
+            var docstuff1 = doc.data().product_price.replace("$","")
+            var docstuff = docstuff1.replace(".","")
+            cart[value].data.price = docstuff
+            window.localStorage.setItem("cart", JSON.stringify(cart))
+            populateCart()
+            realtotal = document.getElementById("total").innerHTML
+            
+            });
+    });
     // update total
     var totalEl = document.getElementById("total");
     
     var total = Object.keys(cart).reduce((prev, curr) => {
 
       var q = cart[curr].quantity;
-
       var p = cart[curr].data.price;
       return prev + (q*p);
     }, 0);
 
     totalDollars = total / 100;
-    console.log(totalDollars)
-    console.log(total)
     totalDollars1 = totalDollars.toFixed(2)
     app.total = `$${totalDollars1}`;
-    console.log(app.total)
     totalEl.innerHTML = app.total
     
 
@@ -573,28 +583,13 @@ console.log(Object.keys(hello).length)
       },
     },
   })
+  var realtotal;
 function StartPayment(){
 	app.dialog1=true
 	var arr = [];
 	cart=getCart()
 	var products_ids = (Object.keys(cart))
-    products_ids.forEach((value, index, array) => {
-        var docRef = db.collection("products").doc(value);
-
-            docRef.get().then((doc) => {
-            var docstuff1 = doc.data().product_price.replace("$","")
-            var docstuff = docstuff1.replace(".","")
-            cart[value].data.price = docstuff
-            window.localStorage.setItem("cart", JSON.stringify(cart))
-            populateCart()
-            var realtotal = document.getElementById("total").innerHTML
-            console.log(realtotal)
-            }).catch((error) => {
-                console.log("Error getting document:", error);
-            });
-    });
 }
-
 
 </script>
 
