@@ -358,20 +358,6 @@ console.log(Object.keys(hello).length)
     var cartBody = document.querySelector("#cart > tbody");
     var cart = getCart();
     Crtitems = (JSON.stringify(Object.keys(cart).length))
-      	var products_ids = (Object.keys(cart))
-  	products_ids.forEach((value, index, array) => {
-        var docRef = db.collection("products").doc(value);
-
-            docRef.get().then((doc) => {
-            var docstuff1 = doc.data().product_price.replace("$","")
-            var docstuff = docstuff1.replace(".","")
-            cart[value].data.price = docstuff
-            window.localStorage.setItem("cart", JSON.stringify(cart))
-            populateCart()
-            realtotal = document.getElementById("total").innerHTML
-            
-            });
-    });
     // update total
     var totalEl = document.getElementById("total");
     
