@@ -116,7 +116,7 @@
 		</div></center>
 	</div>
 </article>
-<article class="card"  id="summary" style="display: none">
+<article class="card"  id="summary" style="">
 	<div class="container">
 		<div class="card-title">
 			<center><h1>Order Summary</h1></center>
@@ -364,6 +364,7 @@ console.log(Object.keys(hello).length)
     var total = Object.keys(cart).reduce((prev, curr) => {
 
       var q = cart[curr].quantity;
+
       var p = cart[curr].data.price;
       return prev + (q*p);
     }, 0);
@@ -577,25 +578,24 @@ function StartPayment(){
 	var arr = [];
 	cart=getCart()
 	var products_ids = (Object.keys(cart))
-for(var i in products_ids){
-//Get User Data
-            var docRef = db.collection("products").doc(products_ids[i]);
+    products_ids.forEach((value, index, array) => {
+        var docRef = db.collection("products").doc(value);
 
             docRef.get().then((doc) => {
-            arr.push(doc.data().product_price);
+            var docstuff1 = doc.data().product_price.replace("$","")
+            var docstuff = docstuff1.replace(".","")
+            cart[value].data.price = docstuff
+            window.localStorage.setItem("cart", JSON.stringify(cart))
+            populateCart()
+            var realtotal = document.getElementById("total").innerHTML
+            console.log(realtotal)
             }).catch((error) => {
                 console.log("Error getting document:", error);
             });
-
+    });
 }
 
 
-var total=0;
-for(var i in arr){ 
-	total += arr[i]; 
-}
-console.log(total)
-}
 </script>
 
 </body>
