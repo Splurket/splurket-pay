@@ -597,7 +597,9 @@ function StartPayment(){
 	cart=getCart()
 	var products_ids = (Object.keys(cart))
 	localStorage.setItem("verifyTotal", "true")
-	var total = document.getElementById('total').innerHTML
+	var total2 = document.getElementById('total').innerHTML
+	var total1 = total2.replace("$","")
+    var total = total1.replace(".","")
 	var myHeaders = new Headers();
 myHeaders.append("Content-Type", "text/plain");
 
