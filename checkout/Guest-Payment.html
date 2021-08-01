@@ -616,6 +616,7 @@ var raw = JSON.stringify({
     "products": (Object.keys(cart))
     }
 });
+console.log(raw)
 
 var requestOptions = {
   method: 'POST',
@@ -624,7 +625,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("https://script.google.com/macros/s/AKfycbxGrn4PNgzpQMGCY2e-OK9zOsCZuopdNUz2BTZcnVHujLEQSJJL7SC9b_AKObUlxUeqww/exec", requestOptions)
+fetch("https://script.google.com/macros/s/AKfycbz56Jck3VrecrvlOFMgAUxHBqAAaZGL-CX8vPgybgE_lUEpmzm-GmB8P7yEusaowbkjBQ/exec", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
