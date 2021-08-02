@@ -602,7 +602,7 @@ function StartPayment(){
     var total = total1.replace(".","")
 	var myHeaders = new Headers();
 myHeaders.append("Content-Type", "text/plain");
-
+var proddata = localStorage.getItem('cart')
 var raw = JSON.stringify({
 "userdata":{
     "email": email,
@@ -613,7 +613,7 @@ var raw = JSON.stringify({
     "exp_year": year,
     "cvc": cvc,
     "amount": total,
-    "products": (Object.keys(cart))
+    "products": cart
     }
 });
 console.log(raw)
