@@ -606,7 +606,7 @@ var proddata = JSON.parse(localStorage.getItem('cart'))
 console.log(proddata)
 var productsarr = []
 for(var i in proddata){
-	var pushdata = { id: proddata[i].data.id, quantity: proddata[i].quantity, image: proddata[i].data.image, price: proddata[i].data.price, name: proddata[i].data.description}
+	var pushdata = { id: proddata[i].data.id, quantity: proddata[i].quantity}
 	productsarr.push(pushdata)
 
 }
