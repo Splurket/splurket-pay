@@ -602,7 +602,15 @@ function StartPayment(){
     var total = total1.replace(".","")
 	var myHeaders = new Headers();
 myHeaders.append("Content-Type", "text/plain");
-var proddata = localStorage.getItem('cart')
+var proddata = JSON.parse(localStorage.getItem('cart'))
+console.log(proddata)
+var productsarr = []
+for(var i in proddata){
+	var pushdata = { id: proddata[i].data.id, quantity: proddata[i].quantity}
+	productsarr.push(pushdata)
+
+}
+console.log(productsarr)
 var raw = JSON.stringify({
 "userdata":{
     "email": email,
@@ -613,7 +621,7 @@ var raw = JSON.stringify({
     "exp_year": year,
     "cvc": cvc,
     "amount": total,
-    "products": cart
+    "products": productsarr
     }
 });
 console.log(raw)
@@ -625,7 +633,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("https://script.google.com/macros/s/AKfycbw8HgMAfolklrdcYXzHq_4aplFkyMhPL9hrPdYUzVX5gu5ysBE_Qfl1pA2MgA-7XItC0w/exec", requestOptions)
+fetch("https://script.google.com/macros/s/AKfycbwJhg5udPBq065LPOKBUKLAP5TFXoYwzXqLRecjZpOAL1QF1eG-T0PIyDoJB7wYlcbGTA/exec", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
