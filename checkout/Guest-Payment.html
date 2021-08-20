@@ -601,7 +601,7 @@ function StartPayment(){
 	var total1 = total2.replace("$","")
     var total = total1.replace(".","")
 	var myHeaders = new Headers();
-myHeaders.append("Content-Type", "text/plain");
+myHeaders.append("Content-Type", "application/json");
 var proddata = JSON.parse(localStorage.getItem('cart'))
 console.log(proddata)
 var productsarr = []
@@ -611,6 +611,9 @@ for(var i in proddata){
 
 }
 console.log(productsarr)
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
 var raw = JSON.stringify({
 "userdata":{
     "email": email,
@@ -638,7 +641,6 @@ fetch("https://splurket.us/email", requestOptions)
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
 
-}
 
 </script>
 
