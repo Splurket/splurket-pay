@@ -191,6 +191,23 @@
         </v-card-text>
       </v-card>
     </v-dialog>
+    <v-dialog
+      v-model="carderr"
+      hide-overlay
+      persistent
+      width="300"
+      id="loader"  
+              
+    >
+      <v-card
+        color="#52b36c"
+        dark
+
+      >
+      <center><h1>Card Error!</h1></center>
+      	<center><h3 id="reserr"></h3></center>
+      </v-card>
+    </v-dialog>
   <v-data-table
     :headers="headers"
     :items="desserts"
@@ -495,7 +512,8 @@ console.log(Object.keys(hello).length)
   el: '#app',
   vuetify: new Vuetify(),
     data: () => ({
-    	dialog1:false,
+    carderr:false,
+    dialog1:false,
      dialog2: false,
       dialog: false,
       dialogDelete: false,
@@ -638,10 +656,17 @@ var requestOptions = {
 
 fetch("https://splurket.us/email", requestOptions)
   .then(response => response.text())
-  .then(result => console.log(result))
+  .then(result => handleResponse(result))
   .catch(error => console.log('error', error));
 }
+function handleResponse(result){
+	if(result.includes("error")){
+		app.dialog1:false;
+		app.carderr = true;
+		document.getElementById("reserr").innerHTML = result.error.message
 
+	}
+}
 </script>
 
 </body>
