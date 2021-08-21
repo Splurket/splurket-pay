@@ -665,6 +665,8 @@ function handleResponse(result){
 		app.carderr = true;
 		document.getElementById("reserr").innerHTML = result.error.message
 
+	}else if(result.includes("Successful!")){
+		window.top.location.href="./guest-success"
 	}
 }
 </script>
