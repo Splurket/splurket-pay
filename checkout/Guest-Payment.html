@@ -661,7 +661,7 @@ fetch("https://splurket.us/email", requestOptions)
 }
 function handleResponse(result){
 	if(result.includes("error")){
-		app.dialog1:false;
+		app.dialog1 =false;
 		app.carderr = true;
 		document.getElementById("reserr").innerHTML = result.error.message
 
