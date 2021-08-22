@@ -661,10 +661,11 @@ fetch("https://splurket.us/email", requestOptions)
   .catch(error => console.log('error', error));
 }
 function handleResponse(result){
+	var resmessg = JSON.stringify(result)
 	if(result.includes("error")){
 		app.dialog1 =false;
 		app.carderr = true;
-		app.reserr = result
+		app.reserr = result.error
 
 	}else if(result.includes("Successful!")){
 		window.top.location.href="./guest-success"
