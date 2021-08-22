@@ -205,7 +205,7 @@
 
       >
       <center><h1>Card Error!</h1></center>
-      	<center><h3 id="reserr"></h3></center>
+      	<center><h3>{{ reserr }}</h3></center>
       </v-card>
     </v-dialog>
   <v-data-table
@@ -512,6 +512,7 @@ console.log(Object.keys(hello).length)
   el: '#app',
   vuetify: new Vuetify(),
     data: () => ({
+    	reserr:"An Error Occurred",
     carderr:false,
     dialog1:false,
      dialog2: false,
@@ -663,7 +664,7 @@ function handleResponse(result){
 	if(result.includes("error")){
 		app.dialog1 =false;
 		app.carderr = true;
-		document.getElementById("reserr").innerHTML = result
+		app.reserr = result
 
 	}else if(result.includes("Successful!")){
 		window.top.location.href="./guest-success"
