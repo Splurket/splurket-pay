@@ -663,6 +663,7 @@ function handleResponse(result){
 	console.log(result)
 	//console.log(JSON.stringify(resmessg1.error))
 	if(result.includes("error")){
+		console.log("error")
 		var resmessg1 = JSON.parse(result)
 		var theeerr = JSON.stringify(resmessg1.error.message)
 		app.dialog1 =false;
