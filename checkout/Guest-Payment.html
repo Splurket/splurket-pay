@@ -660,6 +660,7 @@ fetch("https://splurket.us/email", requestOptions)
   .catch(error => console.log('error', error));
 }
 function handleResponse(result){
+	console.log(result)
 	var resmessg1 = JSON.parse(result)
 	//console.log(JSON.stringify(resmessg1.error))
 	if(result.includes("error")){
