@@ -663,7 +663,7 @@ function handleResponse(result){
 	if(result.includes("error")){
 		app.dialog1 =false;
 		app.carderr = true;
-		document.getElementById("reserr").innerHTML = result.error.message
+		document.getElementById("reserr").innerHTML = result
 
 	}else if(result.includes("Successful!")){
 		window.top.location.href="./guest-success"
