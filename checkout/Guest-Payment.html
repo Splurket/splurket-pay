@@ -661,9 +661,9 @@ fetch("https://splurket.us/email", requestOptions)
   .catch(error => console.log('error', error));
 }
 function handleResponse(result){
-	var resmessg = JSON.stringify(result)
-	console.log(resmessg.error)
-	console.log(resmessg.error.message)
+	var resmessg1 = JSON.parse(result)
+	console.log(result.error)
+	console.log(JSON.stringify(resmessg1.error))
 	if(result.includes("error")){
 		app.dialog1 =false;
 		app.carderr = true;
