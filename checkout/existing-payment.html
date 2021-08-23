@@ -187,22 +187,23 @@ body {
 <div class="wrapper">
   <header class="header">
     <a href="https://splurket.com" class="logo">
-      <img height="48" width="48" src="../assets/images/logo2.png">
+      <img height="70" width="70" src="../assets/images/logo2.png" id="avatarpic">
     </a>
     <h1>Account Verification</h1>
   </header>
   
   <form class="form">
-    <label for="user">
+    <!--<label for="user">
       Username or email address
       <input class="field" type="text" name="user" id="user" autofocus>
-    </label>
+    </label>-->
+    <center><p style="font-weight: bold;"id="avatarusername1"></p></center>
     <label for="password">
       Password <span><a href="#">Forgot password?</a></span>
       <input class="field" type="password" name="password" id="password">
     </label>
     
-    <input class="button" type="submit" value="Sign in">
+    <input class="button" type="submit" value="Verify">
   </form>
   
   <div class="create-account">
@@ -246,10 +247,10 @@ body {
                         if (data1.username != "") {
                             user_name = data1.username;
                         }
-                        /*document.getElementById("avatarpic").src = pro_pic;
+                        document.getElementById("avatarpic").src = pro_pic;
                         //document.getElementById("avatarpic1").src = pro_pic;
                         document.getElementById("avatarusername1").innerText = "Signed In As: " + user_name;
-                        document.getElementById("avatar").style.display = "block";
+                        /*document.getElementById("avatar").style.display = "block";
                         document.getElementById("avatarpic").style.display = "inline-block";
                         var all = document.getElementsByClassName('headerdrop');
                         for (var i = 0; i < all.length; i++) {
