@@ -138,16 +138,19 @@ body {
   outline-width: 3px;
 }
 .form .button {
-  background: #2DB84C;
-  border: 1px solid #28a444;
+  background: #52b36c;
+  border: none;
   border-radius: 2px;
   color: #FFF;
   cursor: pointer;
   font-weight: 600;
+  border-radius: 2px;
+  margin: 10px 0;
+  padding: 9px 7px;
+  width: 100%;
+  text-align: center;
 }
-.form .button:hover {
-  background: #28a444;
-}
+
 
 /************************
   CREATE ACCOUNT
@@ -181,16 +184,95 @@ body {
   color: #0366D6;
   text-decoration: underline;
 }
+.dot-pulse {
+  position: relative;
+  left: -9999px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #52b36c;
+  color: #52b36c;
+  box-shadow: 9999px 0 0 -5px #52b36c;
+  animation: dotPulse 1.5s infinite linear;
+  animation-delay: .25s;
+}
+
+.dot-pulse::before, .dot-pulse::after {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #52b36c;
+  color: #52b36c;
+}
+
+.dot-pulse::before {
+  box-shadow: 9984px 0 0 -5px #52b36c;
+  animation: dotPulseBefore 1.5s infinite linear;
+  animation-delay: 0s;
+}
+
+.dot-pulse::after {
+  box-shadow: 10014px 0 0 -5px #52b36c;
+  animation: dotPulseAfter 1.5s infinite linear;
+  animation-delay: .5s;
+}
+
+@keyframes dotPulseBefore {
+  0% {
+    box-shadow: 9980px 0 0 -5px #52b36c;
+  }
+  30% {
+    box-shadow: 9980px 0 0 2px #52b36c;
+  }
+  60%,
+  100% {
+    box-shadow: 9980px 0 0 -5px #52b36c;
+  }
+}
+
+@keyframes dotPulse {
+  0% {
+    box-shadow: 9999px 0 0 -5px #52b36c;
+  }
+  30% {
+    box-shadow: 9999px 0 0 2px #52b36c;
+  }
+  60%,
+  100% {
+    box-shadow: 9999px 0 0 -5px #52b36c;
+  }
+}
+
+@keyframes dotPulseAfter {
+  0% {
+    box-shadow: 10014px 0 0 -5px #52b36c;
+  }
+  30% {
+    box-shadow: 10014px 0 0 2px #52b36c;
+  }
+  60%,
+  100% {
+    box-shadow: 10014px 0 0 -5px #52b36c;
+  }
+}
 </style>
 <body>
 <!-- partial:index.partial.html -->
-<div class="wrapper">
+<div class="wrapper" id="auth">
   <header class="header">
     <a href="https://splurket.com" class="logo">
       <img height="70" width="70" src="../assets/images/logo2.png" id="avatarpic">
     </a>
     <h1>Account Verification</h1>
   </header>
+  <div style="display: none;background-color: red;height:40px;"id="passerr">
+    <center><h3 style="color:white;padding:10px">Please Provide A Password!</h3></center>
+    
+  </div>
   
   <form class="form">
     <!--<label for="user">
@@ -203,7 +285,9 @@ body {
       <input class="field" type="password" name="password" id="password">
     </label>
     
-    <input class="button" type="submit" value="Verify">
+    <input class="button" onclick="verifypass()" type="button" value="Verify">
+   <center><div class="dot-pulse"style="margin-top:25px;margin-bottom:10px;display: none;" id="bar"></div></center>
+    <center><p style="color:#52b36c;display: none;" id="verbar">Verifying User</p></center>
   </form>
   
   <div class="create-account">
@@ -220,6 +304,8 @@ body {
     
   </div>
   
+</div>
+<div id="afterfetch">
 </div>
 <!-- partial -->
   <script>
@@ -283,6 +369,19 @@ body {
             }).catch((error) => {
               // An error happened.
             });
+        }
+        function verifypass(){
+          var password = document.getElementById('password').value;
+          if(password =="" || password =="null" || password =="undefined" || password == null || password ==undefined){
+            document.getElementById('passerr').style.display = 'block'
+          } else if(password !="" || password !="null" || password !="undefined" || password != null || password !=undefined){
+          document.getElementById("bar").style.display = "block"
+          document.getElementById("verbar").style.display = "block"
+          document.getElementById('passerr').style.display = 'none'
+
+        }
+
+
         }
 
   </script>
