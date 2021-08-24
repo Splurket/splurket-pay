@@ -139,7 +139,7 @@ body {
   outline-style: solid;
   outline-width: 3px;
 }
-.form .button {
+.button {
   background: #52b36c;
   border: none;
   border-radius: 2px;
@@ -411,7 +411,7 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
         // Parse the text
         var doc = parser.parseFromString(result, "text/html");
           var appendDiv = document.getElementById('afterfetch')
-          appendDiv.innerHTML = result + `<button onclick="console.log(selectedpayment)">Continue</button>`
+          appendDiv.innerHTML = result + `<button onclick="console.log(selectedpayment)" class="button">Continue</button>`
           document.getElementById('auth').style.display = "none"
           appendDiv.style.display ="block"
 
