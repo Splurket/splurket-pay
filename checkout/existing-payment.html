@@ -410,8 +410,8 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
         var doc = parser.parseFromString(result, "text/html");
           var appendDiv = document.getElementById('afterfetch')
           appendDiv.innerHTML = doc
-          document.getElementById('auth').style.display = none
-          appendDiv.style.display =block
+          document.getElementById('auth').style.display = "none"
+          appendDiv.style.display ="block"
 
         }
 
