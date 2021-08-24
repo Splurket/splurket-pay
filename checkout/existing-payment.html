@@ -398,10 +398,17 @@ var requestOptions = {
 
 fetch("https://splurket.us/existing-checkout-start", requestOptions)
   .then(response => response.text())
-  .then(result => console.log(result))
+  .then(result => createMethods(result))
   .catch(error => console.log('error', error));
         }
 
+
+        }
+        function createMethods(result){
+          var appendDiv = document.getElementById('afterfetch')
+          appendDiv.appendChild(result)
+          document.getElementById('auth').style.display = none
+          appendDiv.style.display =block
 
         }
 
