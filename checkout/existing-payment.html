@@ -309,7 +309,6 @@ body {
 </div>
 <div id="afterfetch" style="display:none">
 
-  <button onclick="console.log(selectedpayment)">Continue</button>
 </div>
 <!-- partial -->
   <script>
@@ -412,7 +411,7 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
         // Parse the text
         var doc = parser.parseFromString(result, "text/html");
           var appendDiv = document.getElementById('afterfetch')
-          appendDiv.innerHTML = result
+          appendDiv.innerHTML = result + `<button onclick="console.log(selectedpayment)">Continue</button>`
           document.getElementById('auth').style.display = "none"
           appendDiv.style.display ="block"
 
