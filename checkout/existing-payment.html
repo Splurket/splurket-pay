@@ -309,6 +309,10 @@ body {
   
 </div>
 <div id="afterfetch" style="display:none">
+    <div style="display: none;background-color: red;height:40px;"id="passerr">
+    <center><h3 style="color:white;padding:10px">Please Choose A Password!</h3></center>
+    
+  </div>
 
 </div>
 <!-- partial -->
@@ -412,7 +416,7 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
         // Parse the text
         var doc = parser.parseFromString(result, "text/html");
           var appendDiv = document.getElementById('afterfetch')
-          appendDiv.innerHTML = result + `<center><button onclick="console.log(selectedpayment)" class="button" style="width:300px;height:40px">Continue</button></center>`
+          appendDiv.innerHTML = result + `<center><button onclick="cont(selectedpayment)" class="button" style="width:300px;height:40px">Continue</button></center>`
 
           document.getElementById('auth').style.display = "none"
           appendDiv.style.display ="block"
@@ -425,8 +429,13 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
             try {
             checked[i].style.display = 'none'
           }catch(err){
-            
+
           }
+          }
+        }
+        function cont(selectedpayment){
+          if(selectedpayment =="" || selectedpayment =="null" || selectedpayment =="undefined" || selectedpayment == null || selectedpayment ==undefined){
+
           }
         }
 
