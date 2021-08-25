@@ -412,8 +412,8 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
         // Parse the text
         var doc = parser.parseFromString(result, "text/html");
           var appendDiv = document.getElementById('afterfetch')
-          appendDiv.innerHTML = result + `<\/script>
-          <center><button onclick="console.log(selectedpayment)" class="button" style="width:300px;height:40px">Continue</button></center>`
+          appendDiv.innerHTML = result + `<center><button onclick="console.log(selectedpayment)" class="button" style="width:300px;height:40px">Continue</button></center>`
+          appendDiv.innerHTML = appendDiv.innerHTML + document.getElementById('clearSelectedScript').innerHTML
           document.getElementById('auth').style.display = "none"
           appendDiv.style.display ="block"
 
