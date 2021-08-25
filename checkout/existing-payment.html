@@ -309,12 +309,561 @@ body {
   
 </div>
 <div id="afterfetch" style="display:none">
-    <div style="display: none;background-color: red;height:40px;"id="passerr">
+    <div style="display: none;background-color: red;height:40px;"id="selecterr">
     <center><h3 style="color:white;padding:10px">Please Choose A Password!</h3></center>
     
   </div>
 
 </div>
+<article class="card"  id="summary" style="display: none">
+  <div class="container">
+    <div class="card-title">
+      <center><h1>Order Summary</h1></center>
+    </div>
+      <div class="payment-info justify-space-between">
+        <div class="column billing">
+          <div class="title">
+            <h1>Guest Info</h4><br>
+          </div>
+          <div class="field full">
+            <label for="name">Full Name</label>
+            <h3 id="sum_name">Dylan Clayton</h3>
+          </div>
+          <div class="field full">
+            <label for="email">Email</label>
+            <h3 id="sum_email">Splurket@gmail.com</h3>
+          </div>
+        </div><br>
+        <div class="column shipping">
+          <div class="title" style="">
+            <h1>Card Info</h4><br>
+          </div>
+          <div class="field full">
+            <label for="name">Cardholder Name</label>
+            <h3 id="sum_cardholder">Dylan Clayton</h3>
+          </div>
+          <div class="field full">
+            <label for="address">Card Number</label>
+            <h3 id="sum_number">4123 4321 7649 4674</h3>
+          </div>
+          <div class="flex justify-space-between">
+            <div class="field half">
+              <label for="city">Exp. Month</label>
+              <h3 id="sum_month">07</h3>
+            </div>
+            <div class="field half">
+              <label for="state">Exp. Year</label>
+              <h3 id="sum_year">2085</h3>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="zip">CVC Number</label>
+            <h3 id="sum_cvc">345</h3>
+          </div>
+        </div>
+      </div>
+<div id="app" style="width:100%">
+  <v-app id="inspire" style="min-width:50%">
+  <main id="main" style="margin-left:10%">
+    <div class="container">
+<template>
+  <v-dialog
+      v-model="dialog1"
+      hide-overlay
+      persistent
+      width="300"
+      id="loader"  
+              
+    >
+      <v-card
+        color="#52b36c"
+        dark
+
+      >
+        <v-card-text>
+          Processing Payment
+          <v-progress-linear
+            indeterminate
+            color="white"
+            class="mb-0"
+          ></v-progress-linear>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
+    <v-dialog
+      v-model="carderr"
+      width="600"
+      style="min-height:300px"
+
+              
+    >
+      <v-card
+        color="#52b36c"
+        dark
+
+      >
+      <center><h1>Card Error!</h1></center>
+        <center><h3>{{ reserr }}</h3></center>
+      </v-card>
+    </v-dialog>
+  <v-data-table
+    :headers="headers"
+    :items="desserts"
+    class="elevation-1"
+     :items-per-page="-1"
+     :hide-default-footer="true"
+    mobile-breakpoint="0"
+
+
+  >
+
+
+    <template v-slot:top>
+          <v-dialog
+        v-model="dialog2"
+        max-width="500px"
+      >
+        <v-card>
+          <v-card-title>
+            Delete All Items?
+          </v-card-title>
+          <v-card-text>
+            <v-btn
+            id="clearcart"
+              color="primary"
+              dark
+              style="background-color: #52b36c !important"
+              onclick="localStorage.removeItem('cart'); location.reload()"
+            >
+              Yes Clear All items
+            </v-btn>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn
+              color="primary"
+              text
+              @click="dialog2 = false"
+            >
+              No, Get Me Out Of Here!
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+        <v-dialog v-model="dialogDelete" max-width="500px" style="word-break: break-word;">
+          <v-card>
+            <center><v-card-title class="headline" style="word-wrap: break-word;word-break: break-word">Are You Sure You Want To Delete This Item?</v-card-title></center>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
+              <v-btn color="blue darken-1" id="desserts" text @click="deleteItemConfirm" onclick="removeFromCart()">OK</v-btn>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-toolbar>
+  </template>
+
+    <template v-slot:item.name="{ item }">
+      <td
+      :id="item.id"
+      class="subheading"
+      onclick="window.top.location.href='https://splurket.com/pages/product?product='+this.id"
+      >{{item.name}}</td>
+    </template>
+    <template v-slot:item.image="{ item }">
+      <td
+      :id="item.id"
+      onclick="window.top.location.href='https://splurket.com/pages/product?product='+this.id"
+      ><img :src="item.image" style="width:50px;max-height:60px"></td>
+    </template>
+    <template v-slot:no-data>
+        <h1>No Items Found In Cart</h1><br>
+        <center><v-btn type="button" class="btn btn-primary" style="margin-top:15px;background-color: #52b36c;border-color: #52b36c;color:white" onclick="window.location.href ='https://splurket.com/pages/marketplace'"value="Start Shopping">Start Shopping!</v-btn></center><br>
+    </template>
+  </v-data-table>
+</template>
+</div>
+</main>
+</v-app>
+</div>
+    </div>
+    <center><div class="card-actions flex justify-space-between">
+      <div class="flex-start">
+        <button class="button button-secondary">Return to Store</button>
+      </div>
+      <div class="flex-end">
+        <button class="button button-link" onclick="back()">Back</button>
+        <button class="button button-primary" onclick="StartPayment()">Pay <span id="total"></span></button>
+      </div>
+    </div></center>
+  </div>
+</article>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js'></script>
+  <script src='https://cdn.jsdelivr.net/npm/vuetify@2.4.11/dist/vuetify.min.js'></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  var year;
+  var month;
+  var cvc;
+  var number;
+  var cardholder;
+  var email;
+  var name;
+  var config = {
+    apiKey: "AIzaSyC-BUGGSsvUX8z4W1LcsJzS59yrL4__EsE",
+    authDomain: "splurket-66df1.firebaseapp.com",
+    databaseURL: "https://splurket-66df1-default-rtdb.firebaseio.com",
+    projectId: "splurket-66df1",
+    storageBucket: "splurket-66df1.appspot.com",
+    messagingSenderId: "286706779903",
+    appId: "1:286706779903:web:fd91c29319f9804e192eca",
+    measurementId: "G-QWQ2M658KL"
+  };
+firebase.initializeApp(config);
+const db = firebase.firestore();
+db.settings({ timestampsInSnapshots: true }); 
+function proceed(){
+
+if(year == "" || month == "" || cvc == "" || number == "" || cardholder == "" || email == "" || name == ""){
+  document.getElementById('errormess').style.display = "block"
+}else if(year != "" && month != "" && cvc != "" && number != "" && cardholder != "" && email != "" && name != ""){
+
+document.getElementById('summary').style.display ="block"
+}
+}
+function back(){
+document.getElementById('info').style.display ="block"
+document.getElementById('summary').style.display ="none"
+}
+
+
+
+    var idd;
+  cart=getCart();
+
+  populateCart();
+  
+var hello=getCart();
+const items=[];
+console.log(Object.keys(hello).length)
+  for(var item in hello) {
+    console.log(item)
+    var cartItem = hello[item];
+      var dollars = JSON.stringify(cartItem.data.price);
+      var dollars1 = dollars.replace(/["']/g, "")
+      var str = dollars1;
+      var resStr=str.substring(0,str.length-2)+"."+str.substring(str.length-2);
+      pricethat = '$'+resStr;
+    pushdata= {value: false, id: `${cartItem.data.id}`, name: `${cartItem.data.description}`, quantity: `${cartItem.quantity}`, price: pricethat, image: `${cartItem.data.image}`}
+    items.push(pushdata)
+    console.log(Object.keys(hello[item]).length)
+
+    //console.log(cartItem.data.id);
+  }
+  function populateCart(){
+
+    var cartBody = document.querySelector("#cart > tbody");
+    var cart = getCart();
+    Crtitems = (JSON.stringify(Object.keys(cart).length))
+    // update total
+    var totalEl = document.getElementById("total");
+    
+    var total = Object.keys(cart).reduce((prev, curr) => {
+
+      var q = cart[curr].quantity;
+      var p = cart[curr].data.price;
+      return prev + (q*p);
+    }, 0);
+
+    totalDollars = total / 100;
+    totalDollars1 = totalDollars.toFixed(2)
+    app.total = `$${totalDollars1}`;
+    totalEl.innerHTML = app.total
+    
+
+    // remove all cart items
+    /*while (cartBody.firstChild) {
+      cartBody.removeChild(cartBody.firstChild);
+    }*/
+
+    // add cart items back
+    /*for (var item in cart) {
+      var cart = getCart();
+      var cartItem = cart[item];
+      var tr = document.createElement("tr");
+      var desc = document.createElement("td");
+      desc.innerHTML = cartItem.data.description;
+      tr.appendChild(desc);
+
+      var quantity = document.createElement("td");
+      quantity.innerHTML = cartItem.quantity;
+      tr.appendChild(quantity);
+
+      var price = document.createElement("td");
+      var dollars = JSON.stringify(cartItem.data.price);
+      var dollars1 = dollars.replace(/["']/g, "")
+      var str = dollars1;
+      var resStr=str.substring(0,str.length-2)+"."+str.substring(str.length-2);
+
+      price.innerHTML = '$'+resStr;
+      tr.appendChild(price);
+
+
+      var size1 = JSON.stringify(cartItem.data.size);
+      if(typeof size1 !== "undefined") {
+        var size = document.createElement("td");
+        var size2 = size1.replace(/["']/g, "")
+        var str1 = size2;
+        var resStr1=str1.substring(0,str1.length-2)+str1.substring(str1.length-2);
+
+        size.innerHTML = resStr1;
+        tr.appendChild(size);
+    }
+
+      var color1 = JSON.stringify(cartItem.data.color);
+      if(typeof color1 !== "undefined") {
+        var color = document.createElement("td");
+        var color2 = color1.replace(/["']/g, "")
+        var str2 = color2;
+        var resStr2=str2.substring(0,str2.length-2)+str2.substring(str2.length-2);
+
+        color.innerHTML = resStr2;
+        tr.appendChild(color);
+    }
+    var size1 = JSON.stringify(cartItem.data.size);
+      if(typeof size1 == "undefined") {
+        var size = document.createElement("td");
+        tr.appendChild(size);
+    }
+      if(typeof color1 == "undefined") {
+        var color = document.createElement("td");
+        tr.appendChild(color);
+    }
+      var rem = document.createElement("td");
+      var but = document.createElement("button");
+
+      }
+      but.addEventListener("click", removeListener(item));
+      but.innerHTML = 'X';
+      but.style ="background-color: #52b36c; color: white; border-color:white;"
+      rem.appendChild(but);
+      tr.appendChild(rem);
+
+      cartBody.appendChild(tr);
+    }
+  }*/
+}
+
+  function addToCart(data) {
+    var cart = getCart()
+    var prevQuantity = cart[data.id] ? cart[data.id].quantity: 0;
+    cart[data.id] = {
+      quantity: prevQuantity + 1,
+      data,
+
+    }
+    data1 = data.price.replace("$","")
+    data2 = data1.replace(".","")
+    data.price = data2;
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    populateCart();
+  }
+
+  function getCart() {
+    return JSON.parse(localStorage.getItem('cart')) || {};
+  }
+
+  window.addEventListener("storage", function(e) {
+    var products_ids = (Object.keys(cart))
+    products_ids.forEach((value, index, array) => {
+        var docRef = db.collection("products").doc(value);
+
+            docRef.get().then((doc) => {
+            var docstuff1 = doc.data().product_price.replace("$","")
+            var docstuff = docstuff1.replace(".","")
+            cart[value].data.price = docstuff
+            window.localStorage.setItem("cart", JSON.stringify(cart))
+            populateCart()
+            realtotal = document.getElementById("total").innerHTML
+            
+            });
+    });
+    populateCart();
+  })
+  app = new Vue({
+  el: '#app',
+  vuetify: new Vuetify(),
+    data: () => ({
+      reserr:"An Error Occurred",
+    carderr:false,
+    dialog1:false,
+     dialog2: false,
+      dialog: false,
+      dialogDelete: false,
+      total:0,
+      headers: [
+      { text: '', align: 'start', sortable: false, value: 'image'},
+        { text: 'Items', align: 'start', sortable: false, value: 'name'},
+        { text: 'Quantity', value: 'quantity' },
+        { text: 'Price', value: 'price' },
+        { text: '', value: 'actions', sortable: false },
+      ],
+      desserts: items,
+      editedIndex: -1,
+      editedItem: {
+        name: '',
+        calories: 0,
+        fat: 0,
+        carbs: 0,
+        protein: 0,
+      },
+      defaultItem: {
+        name: '',
+        calories: 0,
+        fat: 0,
+        carbs: 0,
+        protein: 0,
+      },
+    }),
+
+    computed: {
+      formTitle () {
+        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+      },
+    },
+
+    watch: {
+      dialog (val) {
+        val || this.close()
+      },
+      dialogDelete (val) {
+        val || this.closeDelete()
+      },
+    },
+
+    created () {
+      this.initialize()
+    },
+
+    methods: {
+      initialize () {
+        this.desserts = items
+      },
+
+      editItem (item) {
+        this.editedIndex = this.desserts.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialog = true
+      },
+
+      deleteItem (item, id) {
+        this.editedIndex = this.desserts.indexOf(item)
+        this.editedItem = Object.assign({}, item)
+        this.dialogDelete = true
+        idd=id
+      },
+
+      deleteItemConfirm () {
+        this.desserts.splice(this.editedIndex, 1)
+        this.closeDelete()
+
+      },
+
+      close () {
+        this.dialog = false
+        this.$nextTick(() => {
+          this.editedItem = Object.assign({}, this.defaultItem)
+          this.editedIndex = -1
+        })
+      },
+
+      closeDelete () {
+        this.dialogDelete = false
+      },
+
+      save () {
+        if (this.editedIndex > -1) {
+          Object.assign(this.desserts[this.editedIndex], this.editedItem)
+        } else {
+          this.desserts.push(this.editedItem)
+        }
+        this.close()
+      },
+    },
+  })
+  var realtotal;
+function StartPayment(){
+  app.dialog1=true
+  var arr = [];
+  cart=getCart()
+  var products_ids = (Object.keys(cart))
+  localStorage.setItem("verifyTotal", "true")
+  var total2 = document.getElementById('total').innerHTML
+  var total1 = total2.replace("$","")
+    var total = total1.replace(".","")
+  var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+var proddata = JSON.parse(localStorage.getItem('cart'))
+console.log(proddata)
+var productsarr = []
+for(var i in proddata){
+  var pushdata = { id: proddata[i].data.id, quantity: proddata[i].quantity}
+  productsarr.push(pushdata)
+
+}
+console.log(productsarr)
+var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+"userdata":{
+    "email": email,
+},
+"data" :{
+    "card": number,
+    "exp_month": month,
+    "exp_year": year,
+    "cvc": cvc,
+    "amount": total,
+    "products": productsarr
+    }
+});
+console.log(raw)
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://splurket.us/email", requestOptions)
+  .then(response => response.text())
+  .then(result => handleResponse(result))
+  .catch(error => console.log('error', error));
+}
+function handleResponse(result){
+  console.log(result)
+  //console.log(JSON.stringify(resmessg1.error))
+  if(result.includes("error")){
+    console.log("error")
+    var resmessg1 = JSON.parse(result)
+    var theeerr = JSON.stringify(resmessg1.error.message)
+    app.dialog1 =false;
+    app.carderr = true;
+    app.reserr = theeerr.toString()
+
+  }else if(result.includes("Successful!")){
+    window.top.location.href="./guest-success"
+  }
+}
+</script>
+
+</body>
+</html>
+
 <!-- partial -->
   <script>
 
@@ -435,7 +984,9 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
         }
         function cont(selectedpayment){
           if(selectedpayment =="" || selectedpayment =="null" || selectedpayment =="undefined" || selectedpayment == null || selectedpayment ==undefined){
-
+            document.getElementById('selecterr').style.display = 'none'
+          }else if(selectedpayment !="" || selectedpayment !="null" || selectedpayment !="undefined" || selectedpayment != null || selectedpayment !=undefined){
+            document.getElementById('summary').style.display ="block"
           }
         }
 
