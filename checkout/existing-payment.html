@@ -421,6 +421,7 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
         function clearSelected(){
           var checked = document.getElementsByClassName('checked')
           for(var i in checked){
+            console.log(checked[i])
             checked[i].style.display = 'none'
           }
         }
