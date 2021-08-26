@@ -73,8 +73,8 @@
 }
 
 a {
-  color: #5266DD;
-  text-decoration: none;
+  color: #5266DD !important;
+  text-decoration: none !important;
 }
 
 body {
@@ -957,7 +957,7 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
         // Parse the text
         var doc = parser.parseFromString(result, "text/html");
           var appendDiv = document.getElementById('afterfetch')
-          appendDiv.innerHTML = result + `<center><button onclick="cont(selectedpayment)" class="button" style="width:300px;height:40px">Continue</button></center>`
+          appendDiv.innerHTML = result + `<center><button onclick="cont(selectedpayment)" class="button1" style="width:300px;height:40px">Continue</button></center>`
 
           document.getElementById('auth').style.display = "none"
           appendDiv.style.display ="block"
