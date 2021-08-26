@@ -353,27 +353,7 @@ body {
           <div class="title" style="">
             <h1>Card Info</h4><br>
           </div>
-          <div class="field full">
-            <label for="name">Cardholder Name</label>
-            <h3 id="sum_cardholder">Dylan Clayton</h3>
-          </div>
-          <div class="field full">
-            <label for="address">Card Number</label>
-            <h3 id="sum_number">4123 4321 7649 4674</h3>
-          </div>
-          <div class="flex justify-space-between">
-            <div class="field half">
-              <label for="city">Exp. Month</label>
-              <h3 id="sum_month">07</h3>
-            </div>
-            <div class="field half">
-              <label for="state">Exp. Year</label>
-              <h3 id="sum_year">2085</h3>
-            </div>
-          </div>
-          <div class="field full">
-            <label for="zip">CVC Number</label>
-            <h3 id="sum_cvc">345</h3>
+          <div id="cardInfo"></div>
           </div>
         </div>
       </div>
@@ -992,8 +972,10 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
           if(selectedpayment =="" || selectedpayment =="null" || selectedpayment =="undefined" || selectedpayment == null || selectedpayment ==undefined){
             document.getElementById('selecterr').style.display = 'none'
           }else if(selectedpayment !="" || selectedpayment !="null" || selectedpayment !="undefined" || selectedpayment != null || selectedpayment !=undefined){
-            document.getElementById('afterfetch').style.display = "none"
-            document.getElementById('summary').style.display ="block"
+            var cardInfo = document.getElementById(selectedpayment)
+            document.getElementById('cardInfo').innerHTML = cardInfo
+            document.getElementById('afterfetch')
+            document.getElementById('summary')
           }
         }
 
