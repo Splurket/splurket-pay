@@ -854,6 +854,9 @@ function handleResponse(result){
 
 <!-- partial -->
   <script>
+    document.addEventListener('submit', (e) => {
+      verifypass()
+    })
 
             function getParameterByName(name, url = window.location.href) {
             name = name.replace(/[\[\]]/g, '\\$&');
