@@ -974,6 +974,7 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
           if(selectedpayment =="" || selectedpayment =="null" || selectedpayment =="undefined" || selectedpayment == null || selectedpayment ==undefined){
             document.getElementById('selecterr').style.display = 'none'
           }else if(selectedpayment !="" || selectedpayment !="null" || selectedpayment !="undefined" || selectedpayment != null || selectedpayment !=undefined){
+            document.getElementById('auth').style.display = "none"
             document.getElementById('summary').style.display ="block"
           }
         }
