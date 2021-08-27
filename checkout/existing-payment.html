@@ -970,8 +970,15 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
         // Parse the text
         var doc = parser.parseFromString(result, "text/html");
           var appendDiv = document.getElementById('afterfetch')
-          appendDiv.innerHTML = result + `
-          <center>
+          appendDiv.innerHTML = `<div style="display: none;background-color: red;height:40px;"id="cardselecterr">
+    <center><h3 style="color:white;padding:10px">Please Choose A Card!</h3></center>
+    
+  </div><br>
+    <div style="display: none;background-color: red;height:40px;"id="emailerr">
+    <center><h3 style="color:white;padding:10px">Please Provide An Email!</h3></center>
+    
+  </div><br>` +result + `
+          <center style="margin-right:45px">
             <label for="password">
                 <strong>Email:</strong>
                 <input class="field input1" type="email" name="email" id="email">
@@ -998,7 +1005,7 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
         }
         function cont(selectedpayment){
           if(selectedpayment =="" || selectedpayment =="null" || selectedpayment =="undefined" || selectedpayment == null || selectedpayment ==undefined){
-            document.getElementById('selecterr').style.display = 'none'
+            document.getElementById('cardselecterr').style.display = 'block'
           }else if(selectedpayment !="" || selectedpayment !="null" || selectedpayment !="undefined" || selectedpayment != null || selectedpayment !=undefined){
             var cardInfo = document.getElementById(selectedpayment)
             document.getElementById('cardInfo').innerHTML = `
