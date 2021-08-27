@@ -10,6 +10,11 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@2.4.11/dist/vuetify.min.css">
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css"><link rel="stylesheet" href="./style.css">
+    <script>
+if ( window.history.replaceState ) {
+  window.history.replaceState( null, null, window.location.href );
+}
+</script>
   <script>
     var email1
     var selectedpayment
@@ -147,6 +152,13 @@ body {
   margin: 10px 0;
   padding: 9px 7px;
   width: 100%;
+}
+  .input1 {
+  border-radius: 2px;
+  border: solid 2px #52b36c;
+  margin: 10px 0;
+  padding: 9px 7px;
+  width: 300px;
 }
 .form .field {
   border: 1px solid #ddd;
@@ -958,7 +970,16 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
         // Parse the text
         var doc = parser.parseFromString(result, "text/html");
           var appendDiv = document.getElementById('afterfetch')
-          appendDiv.innerHTML = result + `<center><button onclick="cont(selectedpayment)" class="button1" style="width:300px;height:40px">Continue</button></center>`
+          appendDiv.innerHTML = result + `
+          <center>
+            <label for="password">
+                <strong>Email:</strong>
+                <input class="field input1" type="email" name="email" id="email">
+            </label> 
+          </center>
+          <center>
+            <button onclick="cont(selectedpayment)" class="button1" style="width:300px;height:40px">Continue</button>
+          </center>`
 
           document.getElementById('auth').style.display = "none"
           appendDiv.style.display ="block"
