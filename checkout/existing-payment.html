@@ -89,6 +89,8 @@
 a {
   color: #5266DD !important;
   text-decoration: none !important;
+  border-bottom: none !important;
+  opacity: 100 !important;
 }
 
 body {
@@ -168,13 +170,21 @@ body {
   width: 100%;
   text-align: center;
 }
-
+a, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: none !important;
+}
 
 /************************
   CREATE ACCOUNT
  */
 .create-account {
-  border: 1px solid #DDD;
+  /*border: 1px solid #DDD;*/
   color: #0b0b0b;
   margin-top: 17px;
   text-align: center;
@@ -198,10 +208,7 @@ body {
   color: #323232;
   text-decoration: none;
 }
-.footer a:hover {
-  color: #0366D6;
-  text-decoration: underline;
-}
+
 .dot-pulse {
   position: relative;
   left: -9999px;
@@ -282,24 +289,24 @@ body {
 <!-- partial:index.partial.html -->
 <div class="wrapper" id="auth">
   <header class="header">
-    <a href="https://splurket.com" class="logo">
+    <a href="https://splurket.com" class="logo" style="text-decoration: none !important;">
       <img height="70" width="70" src="../assets/images/logo2.png" id="avatarpic">
-    </a>
-    <h1>Account Verification</h1>
+    </a><br>
+    <h1>Account Verification</h1><br>
   </header>
   <div style="display: none;background-color: red;height:40px;"id="passerr">
     <center><h3 style="color:white;padding:10px">Please Provide A Password!</h3></center>
     
-  </div>
+  </div><br>
   
   <form class="form">
     <!--<label for="user">
       Username or email address
       <input class="field" type="text" name="user" id="user" autofocus>
     </label>-->
-    <center><p style="font-weight: bold;"id="avatarusername1"></p></center>
+    <center><p style="font-weight: bold;"id="avatarusername1"></p></center><br>
     <label for="password">
-      Password <span><a href="#">Forgot password?</a></span>
+      Password: <span><a href="#">Forgot password?</a></span>
       <input class="field" type="password" name="password" id="password">
     </label>
     
@@ -338,7 +345,7 @@ body {
       <div class="payment-info justify-space-between">
         <div class="column billing">
           <div class="title">
-            <h1>Guest Info</h4><br>
+            <h1>Shipment Info</h4><br>
           </div>
           <div class="field full">
             <label for="name">Full Name</label>
@@ -973,7 +980,10 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
             document.getElementById('selecterr').style.display = 'none'
           }else if(selectedpayment !="" || selectedpayment !="null" || selectedpayment !="undefined" || selectedpayment != null || selectedpayment !=undefined){
             var cardInfo = document.getElementById(selectedpayment)
-            document.getElementById('cardInfo').innerHTML = cardInfo
+            document.getElementById('cardInfo').innerHTML = `
+            <div class="credit-card selectable" style="background-color:#52b36c">
+            ${cardInfo.innerHTML}
+            </div>`
             document.getElementById('afterfetch').style.display = 'none'
             document.getElementById('summary').style.display = 'block'
           }
