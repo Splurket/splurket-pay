@@ -360,10 +360,6 @@ a:-webkit-any-link {
             <h1>Shipment Info</h4><br>
           </div>
           <div class="field full">
-            <label for="name">Full Name</label>
-            <h3 id="sum_name">Dylan Clayton</h3>
-          </div>
-          <div class="field full">
             <label for="email">Email</label>
             <h3 id="sum_email">Splurket@gmail.com</h3>
           </div>
@@ -376,6 +372,9 @@ a:-webkit-any-link {
           </div>
         </div>
       </div>
+      <center><div class="title">
+    <h1>Products In This Order</h1>
+  </div></center>
 <div id="app" style="width:100%">
   <v-app id="inspire" style="min-width:50%">
   <main id="main" style="margin-left:10%">
@@ -804,7 +803,8 @@ function StartPayment(){
   localStorage.setItem("verifyTotal", "true")
   var total2 = document.getElementById('total').innerHTML
   var total1 = total2.replace("$","")
-    var total = total1.replace(".","")
+  var total = total1.replace(".","")
+  console.log(email)
   var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 var proddata = JSON.parse(localStorage.getItem('cart'))
@@ -815,6 +815,8 @@ for(var i in proddata){
   productsarr.push(pushdata)
 
 }
+var email = document.getElementById('email').innerHTML
+console.log(email)
 console.log(productsarr)
 var myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
@@ -824,10 +826,7 @@ var raw = JSON.stringify({
     "email": email,
 },
 "data" :{
-    "card": number,
-    "exp_month": month,
-    "exp_year": year,
-    "cvc": cvc,
+    "card": selectedpayment,
     "amount": total,
     "products": productsarr
     }
@@ -841,7 +840,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("https://splurket.us/email", requestOptions)
+fetch("https://splurket.us/splurkiancheckout", requestOptions)
   .then(response => response.text())
   .then(result => handleResponse(result))
   .catch(error => console.log('error', error));
@@ -970,14 +969,7 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
         // Parse the text
         var doc = parser.parseFromString(result, "text/html");
           var appendDiv = document.getElementById('afterfetch')
-          appendDiv.innerHTML = `<div style="display: none;background-color: red;height:40px;"id="cardselecterr">
-    <center><h3 style="color:white;padding:10px">Please Choose A Card!</h3></center>
-    
-  </div><br>
-    <div style="display: none;background-color: red;height:40px;"id="emailerr">
-    <center><h3 style="color:white;padding:10px">Please Provide An Email!</h3></center>
-    
-  </div><br>` +result + `
+          appendDiv.innerHTML = result + `
           <center style="margin-right:45px">
             <label for="password">
                 <strong>Email:</strong>
@@ -986,7 +978,15 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
           </center>
           <center>
             <button onclick="cont(selectedpayment)" class="button1" style="width:300px;height:40px">Continue</button>
-          </center>`
+          </center>
+          <center><div style="display: none;background-color: red;height:40px;width:500px"id="cardselecterr">
+    <center><h3 style="color:white;padding:10px">Please Choose A Card!</h3></center>
+    
+  </div><br>
+    <div style="display: none;background-color: red;height:40px;width:500px"id="emailerr">
+    <center><h3 style="color:white;padding:10px">Please Provide An Email!</h3></center>
+    
+  </div><br></center>`
 
           document.getElementById('auth').style.display = "none"
           appendDiv.style.display ="block"
@@ -1004,14 +1004,19 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
           }
         }
         function cont(selectedpayment){
+          var emailInput = document.getElementById('email').value
+          if(emailInput =="" || emailInput =="null" || emailInput =="undefined" || emailInput == null || emailInput ==undefined){
+            document.getElementById('emailerr').style.display = 'block'
+          }
           if(selectedpayment =="" || selectedpayment =="null" || selectedpayment =="undefined" || selectedpayment == null || selectedpayment ==undefined){
             document.getElementById('cardselecterr').style.display = 'block'
-          }else if(selectedpayment !="" || selectedpayment !="null" || selectedpayment !="undefined" || selectedpayment != null || selectedpayment !=undefined){
+          }else if(selectedpayment !="" && selectedpayment !="null" && selectedpayment !="undefined" && selectedpayment != null && selectedpayment !=undefined && emailInput !="" && emailInput !="null" && emailInput !="undefined" && emailInput != null && emailInput !=undefined){
             var cardInfo = document.getElementById(selectedpayment)
             document.getElementById('cardInfo').innerHTML = `
             <div class="credit-card selectable" style="background-color:#52b36c">
             ${cardInfo.innerHTML}
             </div>`
+            document.getElementById('sum_email').innerHTML = emailInput
             document.getElementById('afterfetch').style.display = 'none'
             document.getElementById('summary').style.display = 'block'
           }
