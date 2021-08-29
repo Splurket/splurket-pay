@@ -839,7 +839,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("https://splurket.us/splurkiancheckout", requestOptions)
+fetch("https://splurket.us/splurkian-checkout", requestOptions)
   .then(response => response.text())
   .then(result => handleResponse(result))
   .catch(error => console.log('error', error));
@@ -1003,7 +1003,7 @@ fetch("https://splurket.us/existing-checkout-start", requestOptions)
           }
         }
         function cont(selectedpayment){
-          var emailInput = document.getElementById('email').value
+          emailInput = document.getElementById('email').value
           if(emailInput =="" || emailInput =="null" || emailInput =="undefined" || emailInput == null || emailInput ==undefined){
             document.getElementById('emailerr').style.display = 'block'
           }
